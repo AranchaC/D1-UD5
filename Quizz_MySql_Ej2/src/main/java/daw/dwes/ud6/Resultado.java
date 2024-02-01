@@ -1,6 +1,8 @@
 package daw.dwes.ud6;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -8,6 +10,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Resultado {
 	
+	@Enumerated(EnumType.STRING)
     private Clasificacion clasificacion;
     private int puntos;  
     private String nombre;
