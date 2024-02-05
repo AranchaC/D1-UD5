@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.HttpSession;
 
-@RestController
+@Controller
 public class QuizController {
 	
     private final ResultadoRepository resultadoRepositorio;
@@ -272,12 +272,7 @@ public class QuizController {
         List<Resultado> todosLosResultados = resultadoRepositorio.findAll();
 
         // Seleccionar los últimos 5 resultados (o menos si hay menos de 5)
-        
-        //si la lista tiene > 5 elementos, la posición es size-5, si no, es la posición 0
-        int inicio = todosLosResultados.size() > 5 ? todosLosResultados.size() - 5 : 0;
-        //la posición será la última de la lista.
-        int fin = todosLosResultados.size();
-        List<Resultado> ultimosResultados = todosLosResultados.subList(inicio, fin);
+        List<Resultado> ultimosResultados = resultadoRepositorio.Ultimos5Resultados();
 
         // Agregar la lista de últimos resultados al modelo
         model.addAttribute("ultimosResultados", ultimosResultados);
@@ -358,11 +353,7 @@ public class QuizController {
         long totalResultados = resultadoRepositorio.count();
         return ResponseEntity.ok("Número de resultados en la BBDD: " 
         		+ totalResultados);
-    }
-
-    
-    
-
+    }//contar
 
 }
 
