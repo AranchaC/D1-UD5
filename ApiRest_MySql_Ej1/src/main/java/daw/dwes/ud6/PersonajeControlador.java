@@ -87,7 +87,7 @@ public class PersonajeControlador {
     public ResponseEntity<?> borrarPersonaje(@PathVariable("id") Long id) {
         Personaje existePersonaje = personajesRepositorio.findById(id).orElse(null);
         if (existePersonaje != null) {
-            personajesRepositorio.deleteById(id);
+            personajesRepositorio.delete(existePersonaje);
             return ResponseEntity.status(HttpStatus.OK)
                     .body("El personaje con id " + id + " ha sido borrado.");
         } else {
